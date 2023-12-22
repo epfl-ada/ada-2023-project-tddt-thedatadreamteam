@@ -1,24 +1,23 @@
-# GeoWiki
+# Europe in Wikispeedia - Unmasking Geographical Bias 
+*TheDataDreamTeam (TDDT): Jason Becker, Ruben Jungius, Juan Enrique Martín, Pablo Menéndez, Jiri Pospisil*
+
+## Datastory
+[Europe in Wikispeedia - Unmasking Geographical Bias ](https://gretasaskia.github.io/wikiwomen/)
 
 ## Abstract
 
-As online educational platforms increasingly become vital tools for knowledge dissemination, examining potential biases that may influence user experiences and content representation is crucial. For this reason, in this project, we aim to investigate the presence of geographical biases in the Wikispeedia game and in the behaviour of its players. Wikispeedia is a game where the goal is to get from one article to another using links. The more someone is aware of potential links between articles, the more likely he/she is to succeed.
+As online educational platforms increasingly become vital tools for knowledge dissemination, it is crucial to examine potential biases that may influence user experiences and content representation. For this reason, in this project we aim to investigate the presence of geographical biases in the Wikispeedia game and in the behavior of its players. Wikispeedia is a game where the goal is to get from one article to another by using links, the more someone is aware of potential links between articles, the more likely he/she is to succeed.
 
-Based on the origin of the dataset, the [2007 Wikipedia Selection for schools](https://web.archive.org/web/20071006054112/http://schools-wikipedia.org/), which is targeted for children in the UK, and the origin of Wikispeedia itself (Canada), we want to observe if there is a bias towards the regions of North America and Europe (collectively) in the selection of the articles and in the way people play the game.
+Based on the origin of the dataset, the [2007 Wikipedia Selection for schools](https://web.archive.org/web/20071006054112/http://schools-wikipedia.org/), which is targeted for children in the UK, and the origin of Wikispeedia itself (Canada), we want to observe if there is a bias towards the region of Europe in the selection of articles and in the way people play the game.
 
 ## Research questions
 
-To correctly answer if there is a bias towards Europe and North America (NA), we will propose and answer the following research questions:
+To correctly answer if there is a bias towards Europe we will propose and answer the following research questions:
 
-- Is there a difference in article distribution between Europe/NA and the other continents?
-- Are there differences in paths' statistics for articles with the target articles related to Europe/NA and with the target articles associated with the other continents?
+- Are there more articles for Europe than for the other continents?
+- Are there more articles from Europe in the paths than there should be?
 
-We aim to conduct an observational study, controlling all the confounding factors that could bias our analysis, in which the games with a target article related to Europe/NA belong to the treatment group, and the games with a target article associated with the other continents are the control group.
-
-### Supporting questions:
-
-- Is there a difference in path length, success rate, restart rate, and time spent for paths with a target article related to a different continent from Europe and NA?
-- Do people back-click more from articles unrelated to NA or Europe?
+We conducted an observational study where the treatment group were the games whose paths that end in Europe classified articles and the control group the games that end in other continents related articles. Our objective is to minimize the confounding factors that could bias our analysis so we can analyze paths where the difference is only the goal.
 
 ## Methods
 
@@ -36,24 +35,26 @@ We start with the geographical categories that are predefined in our Wikispeedia
 
 The geographic locations are renamed and grouped into standard continent names. We can extend our list by searching for keywords (from already labeled articles) in the article names. This allows us to label articles from categories such as British_History, Monarcs_of_United_Kingdom, America_History or USA_presidents with examples of article names Napoleon_I_of_**France** and 1755_**Lisbon**_earthquake.
 
-Then, for labeling the rest of the articles, we propose the following methods:
-
-- Our first idea was to use the semantic distance between articles and look for the geographical one closest to our article. However, this method may include bias towards article paths, as the article [Wikispeedia: An Online Game for Inferring Semantic Distances between Concepts](http://infolab.stanford.edu/~west1/pubs/West-Pineau-Precup_IJCAI-09.pdf) uses players' paths to estimate the semantic distance.
-- Using weighted links: We calculated the position of the links in the articles and sorted them accordingly, assigning more weight to the first links. We calculated weighted scores of the continent categories for the new articles using the already labelled links. When selecting the label with the highest score, we observed promising results for the People category.
-- Analyzing the first paragraph: By looking at the information at the beginning of the articles, we can extract the locations, origins and other information related to the already labeled articles.
-- Looking at the whole article: This idea transforms the articles into vectors and applies a clustering method to them, with the origins of the clusters in the continental articles.
-- Category non-continental: There are plenty of articles that are general and could not be assigned to a continent. We can simplify our analysis by setting some categories like Business or Animal Rights to non-continental and some articles that have no links related to nothing geographical as non-continental.
+Then, for classifying the rest of the articles we made use of ChatGPT. Our method was sending all the titles of the articles in batches of around 300 and ask the LLM to classify them based on. After that, we compared to the prior classification and classified manually those that were not the same (usually ChatGPT was right).
 
 ### Observational study
 
-After the article labeling step, we will conduct an observational study using the treated and control groups model seen in the class. We will analyze the available attributes (length, success rate, time spent, number of back clicks, etc.) of paths in the treated and control groups. We expect to find a trend indicating that paths with target topics associated with Europe/NA have a higher success rate due to a knowledge foundation.
+After we classified the articles, we conduct an observational study using a model like in the case of the treated and control case seen in class. We compare the performance of the players in the treatment and control groups. We define performance as the success rate, that is, the number of finished paths in each group. We expected to find a trend indicating that paths leading to topics that can be associated with Europe have a higher play and completion rate due to a knowledge foundation. 
 
-As in every observational study, an important step is matching. The following factors can be used to match games:
+As in every observational study, an important step is matching. We performed matching on:
 
-- Starting article
-- The [PageRank](https://es.wikipedia.org/wiki/PageRank) of the goal (indicates the same probability of reaching the goal). Already computed in the file ```Data/pagerank.csv```
-- Same category of the target article
+- Category of the starting article
+- Category of the target article
+- Shortest path
 
+To make sure we balance the dataset, we compute the propensity score on observed covariates via logistic regression:
+
+- Length of the starting article
+- Length of the target article
+- PageRank of the starting article
+- PageRank of the target article
+
+To show the final results we perform a t-test on the success rate and demonstrate that there is no significant bias.
 
 ## Proposed milestones for P3 and Timeline
 
@@ -71,8 +72,22 @@ As in every observational study, an important step is matching. The following fa
 
 As this project is a huge opportunity to learn and grow, we organized ourselves in Agile methodology. We work in weekly sprints and meet regularly multiple times a week. Each member works on each part of the pipeline to learn the most from this course. We then meet and discuss our solutions and combine the best ideas for the final analysis. We then plan goals for the next sprint so that the project can progress smoothly and we will be able to deliver an engaging data story about geographical influence in the wikispeedia game.
 
-## __Questions for the TA__
+Overall, we can approximate what each member has spent most time on:
 
-- Should we construct a control/treatment group differently?
-- Or conduct multiple observational analyses?
-   - For example, searching for biases for individual continents with one continent as the treatment group and the others as the control group.
+- Jason Becker: classifying and explanation of jupyter notebook
+- Ruben Jungius: classifying and datastory
+- Juan Enrique Martín: initial analysis and datastory
+- Pablo Menéndez: classifying and initial analysis
+- Jiri Pospisil: initial analysis and observational study
+
+## Sources
+
+Mark Graham (2 December 2009). "Wikipedia's known unknowns". The Guardian.co.uk. Retrieved 12 June 2020.
+
+David Laniado, Marc Miquel Ribé, "Cultural Identities in Wikipedias", SMSociety '16, July 11 - 13, 2016, London, United Kingdom.
+
+Hecht, B.J. and Gergle, D. 2010. "On the localness of user-generated content." Proc. CSCW.
+
+Internet Archive. “2007 Wikipedia Selection for schools”. Wikipedia. https://web.archive.org/web/20071006054112/http://schools-wikipedia.org/
+
+Robert West, Jure Leskovec et al. Wikispeedia navigation paths. SNAP: Stanford Network Analysis Platform. https://snap.stanford.edu/data/wikispeedia.html
