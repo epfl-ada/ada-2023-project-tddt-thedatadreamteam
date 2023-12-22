@@ -2,7 +2,7 @@
 *TheDataDreamTeam (TDDT): Jason Becker, Ruben Jungius, Juan Enrique Martín, Pablo Menéndez, Jiri Pospisil*
 
 ## Datastory
-[Europe in Wikispeedia - Unmasking Geographical Bias ](https://gretasaskia.github.io/wikiwomen/)
+[Europe in Wikispeedia - Unmasking Geographical Bias ](https://rjungius.github.io)
 
 ## Abstract
 
@@ -82,9 +82,9 @@ Overall, we can approximate what each member has spent most time on:
 
 ## Sources
 
-Mark Graham (2 December 2009). "Wikipedia's known unknowns". The Guardian.co.uk. Retrieved 12 June 2020.
+Mark Graham (2 December 2009). "Wikipedia's known unknowns". The Guardian.co.uk. Retrieved 12 June 2020. http://www.guardian.co.uk/technology/2009/dec/02/wikipedia-known-unknowns-geotagging-knowledge
 
-David Laniado, Marc Miquel Ribé, "Cultural Identities in Wikipedias", SMSociety '16, July 11 - 13, 2016, London, United Kingdom.
+David Laniado, Marc Miquel Ribé, "Cultural Identities in Wikipedias", SMSociety '16, July 11 - 13, 2016, London, United Kingdom. https://www.academia.edu/25481875/Cultural_Identities_in_Wikipedias
 
 Hecht, B.J. and Gergle, D. 2010. "On the localness of user-generated content." Proc. CSCW.
 
