@@ -2,7 +2,7 @@
 *TheDataDreamTeam (TDDT): Jason Becker, Ruben Jungius, Juan Enrique Martín, Pablo Menéndez, Jiri Pospisil*
 
 ## Datastory
-[Europe in Wikispeedia - Unmasking Geographical Bias ](https://gretasaskia.github.io/wikiwomen/)
+[Europe in Wikispeedia - Unmasking Geographical Bias ](https://rjungius.github.io)
 
 ## Abstract
 
