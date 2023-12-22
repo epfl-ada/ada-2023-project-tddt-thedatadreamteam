@@ -66,6 +66,7 @@ if __name__ == "__main__":
     plaintext_path = os.path.join("Data", "plaintext_articles")
 
     word_counts = []
+    print("Reading articles")
     for article_name in df_articles.article:
         file_path = os.path.join(plaintext_path, article_name + ".txt")
 
@@ -119,6 +120,7 @@ if __name__ == "__main__":
     df_paths = df_paths[df_paths["start"].isin(df_articles_all.name) & df_paths["target"].isin(df_articles_all.name)]
 
 
+    print("Computing Shortest Paths")
     shortest_paths = []
     with open(os.path.join("Data", "wikispeedia_paths-and-graph", "shortest-path-distance-matrix.txt")) as file:
         for line in file:
@@ -168,8 +170,11 @@ if __name__ == "__main__":
         '''Calculate similarity for instances with given propensity scores'''
         return 1 - np.abs(propensity_score1 - propensity_score2)
 
+    print("Computing Matching..")
     G = nx.Graph()
+    
     for control_id, control_row in control_df.iterrows():
+        print(f'{control_id} of {len(control_df)}')
         for treatment_id, treatment_row in treatment_df.iterrows():
 
             if len(set(treatment_row['startCategoryMain']) & set(control_row['startCategoryMain'])) \
