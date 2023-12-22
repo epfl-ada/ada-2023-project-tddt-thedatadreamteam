@@ -26,7 +26,7 @@ def page_rank(adjacency_matrix, dumping_factor=0.85, max_iterations=1000):
     return page_rank_scores
 
 def csv_pagerank():
-    df = pd.read_table('Data/wikispeedia_paths-and-graph/links.tsv', header=None, names = ['Articles','Links'], skiprows=12)
+    df = pd.read_table('../Data/wikispeedia_paths-and-graph/links.tsv', header=None, names = ['Articles','Links'], skiprows=12)
 
     #We create the graph of all the wikispeedia game
     G = nx.from_pandas_edgelist(df, 'Articles', 'Links', create_using=nx.DiGraph())
